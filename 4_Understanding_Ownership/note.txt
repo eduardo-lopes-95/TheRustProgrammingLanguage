@@ -1,0 +1,33 @@
+4.1
+    Onwership é um conjunto de regras que governam a maneira como Rust gerencia a memória
+
+    Quais são as regras:
+    >> Cada valor pertence a uma variável, chamada de proprietário/titular
+    >> Quando o valor muda de proprietário/titular, a variável é destruída
+
+    Escopo de variável:
+    É definido por {}, dentro dele a variável é válida. Ao sair do escopo,
+    o compilador chama a função drop, uma implementação (Trait Drop), que
+    desaloca a variável da memória.
+
+    Características de uma String: Ponteiro, Tamanho e Capacidade.
+    Essas informações são armazanadas na stack, dessa forma, o ponteiro 
+    guarda o index[0], o tamanho (len) guarda o index[n] e a capacidade
+    
+    Ex:
+    let s = String::from("Hello");
+    let s1 = s;
+    println!("{}", s1)
+
+    O ponteiro de s foi copiado para s1, ou seja, ambas apontam para o mesmo lugar.
+    Caso isso não ocorresse, haveria um custo computacional para duplicar o valor,
+    isso implica em queda de performance.
+
+    Além disso, s já foi desalocada da memória, pois trocou de proprietário/titular,
+    s -> s1, ou seja, s foi movida para s1, saiu do escopo, a memória foi liberada
+    pela função drop.
+
+    Maneiras como variáveis e dados interagem:
+    >> Move: 
+    >> Copy: copia o ponteiro, tamanho e capacidade, dado permance
+    >> Clone: copia o ponteiro, tamanho, capacidade e o dado foi duplicado.
